@@ -9,9 +9,9 @@ async function list(req, res, next) {
     }
 }
 
-async function getByid(req, res, next) {
+async function getById(req, res, next) {
     try {
-        const data = await equiposService.getEquiopsByid(req.params.id);
+        const data = await equiposService.getEquipoById(req.params.id);
         res.json({ ok: true, data });
     } catch (error) {
         next(error);
@@ -44,4 +44,4 @@ async function remove(req, res, next) {
     }
 }
 
-module.exports = { list, getByid, create, update, remove };
+module.exports = { list, getById, create, update, remove };

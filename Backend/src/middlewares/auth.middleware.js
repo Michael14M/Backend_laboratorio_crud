@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const env = require('../config/env');
 
 function authenticate(req, res, next) {
-    const header = req.headers.authenticate;
+    const header = req.headers.autorization;
 
     if (!header || !header.startWith('Bearer')) {
         return res.status(401).json({
@@ -26,7 +26,7 @@ function authenticate(req, res, next) {
 
 function authorize(...roles) {
     return (req, res, next) => {
-        id (!roles.includes(req.user.rol)) {
+        if (!roles.includes(req.user.rol)) {
             return res.status(403).json({
                 ok: false,
                 message: 'No tienes permisos para realizar esta operacion'
