@@ -29,7 +29,8 @@ async function create(req, res, next) {
 
 async function update(req, res, next) {
     try {
-        await equiposService.updateEquipo(req.params.id, req.body, req.file?.filename);
+        const data = await equiposService.updateEquipo(req.params.id, req.body, req.file?.filename);
+        res.json({ ok: true, message: 'Equipo actualizado correctamente', data });
     } catch (error) {
         next(error);
     }
@@ -37,9 +38,9 @@ async function update(req, res, next) {
 
 async function remove(req, res, next) {
     try {
-        await equiposService.updateEquipo(req.params.id);
+        await equiposService.deleteEquipo(req.params.id);
         res.json({ ok: true, message: 'Equipo eliminado' });
-    } catch(error) {
+    } catch (error) {
         next(error);
     }
 }

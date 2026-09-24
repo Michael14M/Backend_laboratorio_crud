@@ -2,9 +2,9 @@ const jwt = require('jsonwebtoken');
 const env = require('../config/env');
 
 function authenticate(req, res, next) {
-    const header = req.headers.autorization;
+    const header = req.headers.authorization;
 
-    if (!header || !header.startWith('Bearer')) {
+    if (!header || !header.startsWith('Bearer')) {
         return res.status(401).json({
             ok: false,
             message: 'Token requerido'
